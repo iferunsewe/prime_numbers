@@ -7,6 +7,7 @@ class PrimeNumbersTable
   attr_reader :table
 
   def initialize(number)
+    raise ArgumentError, 'Please provide a number of prime numbers to generate the table' if number.nil?
     @number = number.to_i
     @table = Terminal::Table.new
     build

@@ -6,6 +6,14 @@ RSpec.describe PrimeNumbersTable do
   let(:table){  build_prime_numbers_table.table  }
   let(:number) { 10 }
 
+  context 'when you do not provide an argument' do
+    let(:number) { nil }
+
+    it 'raises an error' do
+      expect{ build_prime_numbers_table }.to raise_error(ArgumentError, 'Please provide a number of prime numbers to generate the table')
+    end
+  end
+
   context '#build' do
     it 'returns a table' do
       expect(table).to be_kind_of(Terminal::Table)
