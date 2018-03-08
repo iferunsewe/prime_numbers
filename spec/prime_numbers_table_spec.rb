@@ -1,21 +1,12 @@
 require 'spec_helper'
 
 RSpec.describe PrimeNumbersTable do
-  subject(:create_prime_numbers_table) { described_class.new(number) }
+  subject(:build_prime_numbers_table) { described_class.new(number) }
   let(:arr_of_prime_numbers){ Prime.first(number) }
-  let(:table){  create_prime_numbers_table.table  }
-
-  context 'when you do not provide an integer' do
-    let(:number) { 'X' }
-
-    it 'raises an error' do
-      expect{ create_prime_numbers_table }.to raise_error(ArgumentError, "#{number} is not an integer")
-    end
-  end
+  let(:table){  build_prime_numbers_table.table  }
+  let(:number) { 10 }
 
   context '#build' do
-    let(:number) { 10 }
-
     it 'returns a table' do
       expect(table).to be_kind_of(Terminal::Table)
     end

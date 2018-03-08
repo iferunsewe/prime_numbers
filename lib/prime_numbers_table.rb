@@ -7,19 +7,17 @@ class PrimeNumbersTable
   attr_reader :table
 
   def initialize(number)
-    raise ArgumentError, "#{number} is not an integer" unless number.is_a? Integer
     @number = number.to_i
     @table = Terminal::Table.new
     build
   end
 
+  private
+
   def build
     table.rows = build_rows_with_column_headings
     table.headings = build_headings
-    table
   end
-
-  private
 
   def get_n_prime_numbers
     Prime.first(@number)
@@ -40,4 +38,9 @@ class PrimeNumbersTable
       row.unshift(get_n_prime_numbers[i])
     end
   end
+end
+
+if $0 == __FILE__
+  prime_number_table = PrimeNumbersTable.new(ARGV[0])
+  puts prime_number_table.table
 end
